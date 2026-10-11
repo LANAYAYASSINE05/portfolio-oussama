@@ -54,8 +54,9 @@ export function ChantierPlanning() {
           <div className="hidden border-r border-line px-5 py-3 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-graphite md:block">Tâche</div>
           <div className="relative h-10">
             {years.map((y) => (
-              <span key={y} className="absolute inset-y-0 flex items-center border-l border-line pl-2 font-mono text-[0.65rem] text-graphite" style={{ left: `${pct(y)}%` }}>
-                {y}
+              <span key={y} className="absolute inset-y-0 flex items-center border-l border-line pl-1.5 font-mono text-[0.65rem] text-graphite sm:pl-2" style={{ left: `${pct(y)}%` }}>
+                <span className="sm:hidden">&apos;{String(y).slice(2)}</span>
+                <span className="hidden sm:inline">{y}</span>
               </span>
             ))}
           </div>
@@ -100,7 +101,7 @@ export function ChantierPlanning() {
                         }`}
                         style={{ left: `${pct(t.from)}%`, width: `${pct(t.to) - pct(t.from)}%` }}
                       >
-                        {!t.ongoing && <span className="truncate">{t.company}</span>}
+                        {!t.ongoing && <span className="hidden truncate sm:block">{t.company}</span>}
                       </span>
                       <span aria-hidden className="absolute top-1/2 size-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border-2 border-ink bg-night" style={{ left: `${pct(t.to)}%` }} />
                     </span>

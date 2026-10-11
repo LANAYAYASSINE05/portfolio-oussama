@@ -73,7 +73,7 @@ export function ChantierReception() {
               <tbody>
                 {education.map((e) => (
                   <tr key={e.title} data-ch-row className="border-t border-[#141414]/15 align-top">
-                    <td className="py-4 pr-4 font-stencil text-2xl">{e.level}</td>
+                    <td className="whitespace-nowrap py-4 pr-3 font-stencil text-xl sm:pr-4 sm:text-2xl">{e.level}</td>
                     <td className="py-4 pr-4">
                       <p className="font-display text-2xl uppercase leading-none md:text-3xl">{e.title}</p>
                       <p className="mt-1 text-sm font-semibold text-[#141414]/70">
@@ -82,7 +82,7 @@ export function ChantierReception() {
                       <p className="mt-2 max-w-xl text-sm leading-relaxed text-[#141414]/75">{e.detail}</p>
                       <p className="mt-2 font-mono text-xs sm:hidden">{e.year}</p>
                     </td>
-                    <td className="hidden py-4 pr-4 font-mono text-sm sm:table-cell">{e.year}</td>
+                    <td className="hidden whitespace-nowrap py-4 pr-4 font-mono text-sm sm:table-cell">{e.year}</td>
                     <td className="py-4 text-right">
                       <span data-ch-tick className="inline-grid size-8 place-items-center bg-[#1f6b3a] text-[#f4f2ec]">
                         <Check aria-hidden className="size-5" strokeWidth={3} />
@@ -118,13 +118,15 @@ export function ChantierReception() {
               <p className="text-[#141414]/55">Le jury</p>
               <p className="mt-1">{identity.school}</p>
             </div>
-            <span
-              data-ch-stamp
-              className="stamp pointer-events-none absolute bottom-6 left-1/2 -translate-x-1/2 px-4 py-2 text-center text-[clamp(1.25rem,3vw,2rem)] leading-none text-[#d6261c] opacity-90"
-            >
-              Réceptionné
-              <span className="block text-[0.5em] tracking-[0.2em]">sans réserve · {identity.graduation}</span>
-            </span>
+            <div className="flex w-full justify-center lg:contents">
+              <span
+                data-ch-stamp
+                className="stamp pointer-events-none px-4 py-2 text-center text-[clamp(1.25rem,3vw,2rem)] leading-none text-[#d6261c] opacity-90 lg:absolute lg:bottom-6 lg:left-1/2 lg:-translate-x-1/2"
+              >
+                Réceptionné
+                <span className="block text-[0.5em] tracking-[0.2em]">sans réserve · {identity.graduation}</span>
+              </span>
+            </div>
           </footer>
         </article>
       </div>

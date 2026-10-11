@@ -1,7 +1,8 @@
 "use client";
 
 import { AnimatePresence, motion } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { createPortal } from "react-dom";
 import { setTheme, useTheme, type Theme } from "@/lib/theme";
 
 const options: { id: Theme; label: string }[] = [
@@ -22,13 +23,20 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
   const theme = useTheme();
   const [open, setOpen] = useState(false);
   const root = useRef<HTMLDivElement>(null);
+  const menu = useRef<HTMLDivElement>(null);
+  const mounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const current = options.find((o) => o.id === theme) ?? options[0];
   const index = options.indexOf(current);
 
   useEffect(() => {
     if (!open) return;
     const onDown = (e: PointerEvent) => {
-      if (!root.current?.contains(e.target as Node)) setOpen(false);
+      const t = e.target as Node;
+      if (!root.current?.contains(t) && !menu.current?.contains(t)) setOpen(false);
     };
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setOpen(false);
     document.addEventListener("pointerdown", onDown);
@@ -58,41 +66,46 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
         </motion.span>
       </button>
 
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            id="theme-menu"
-            role="radiogroup"
-            aria-label="Système de design"
-            initial={{ opacity: 0, y: -8, scale: 0.97 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -8, scale: 0.97 }}
-            transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-x-4 top-[calc(var(--header-h)-0.5rem)] z-[70] grid origin-top grid-cols-2 sm:absolute sm:inset-x-auto sm:right-0 sm:top-12 sm:w-80 sm:origin-top-right gap-1 rounded-2xl border border-white/15 bg-[#111] p-2 text-[#f2f0ea] shadow-[0_24px_50px_rgb(0_0_0/0.45)]"
-          >
-            {options.map((o, i) => {
-              const active = theme === o.id;
-              return (
-                <button
-                  key={o.id}
-                  type="button"
-                  role="radio"
-                  aria-checked={active}
-                  onClick={(e) => {
-                    setOpen(false);
-                    if (!active) setTheme(o.id, { x: e.clientX, y: e.clientY });
-                  }}
-                  className={`label flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-left transition-colors ${active ? "bg-white text-black" : "hover:bg-white/10"}`}
-                  data-cursor=""
-                >
-                  <span className="opacity-50">{String(i + 1).padStart(2, "0")}</span>
-                  {o.label}
-                </button>
-              );
-            })}
-          </motion.div>
+      {mounted &&
+        createPortal(
+          <AnimatePresence>
+            {open && (
+              <motion.div
+                ref={menu}
+                id="theme-menu"
+                role="radiogroup"
+                aria-label="Système de design"
+                initial={{ opacity: 0, y: -8, scale: 0.97 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -8, scale: 0.97 }}
+                transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                className="fixed inset-x-4 top-[calc(var(--header-h)-0.5rem)] z-[70] grid origin-top grid-cols-2 gap-1 sm:left-auto sm:right-[var(--gutter)] sm:w-80 sm:origin-top-right rounded-2xl border border-white/15 bg-[#111] p-2 text-[#f2f0ea] shadow-[0_24px_50px_rgb(0_0_0/0.45)]"
+              >
+                {options.map((o, i) => {
+                  const active = theme === o.id;
+                  return (
+                    <button
+                      key={o.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={active}
+                      onClick={(e) => {
+                        setOpen(false);
+                        if (!active) setTheme(o.id, { x: e.clientX, y: e.clientY });
+                      }}
+                      className={`label flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-left transition-colors ${active ? "bg-white text-black" : "hover:bg-white/10"}`}
+                      data-cursor=""
+                    >
+                      <span className="opacity-50">{String(i + 1).padStart(2, "0")}</span>
+                      {o.label}
+                    </button>
+                  );
+                })}
+              </motion.div>
+            )}
+          </AnimatePresence>,
+          document.body,
         )}
-      </AnimatePresence>
     </div>
   );
 }

@@ -63,7 +63,7 @@ export function ChantierConteneurs() {
             <div key={cat} data-reveal>
               <div className="relative border-[10px] [perspective:1400px]" style={{ borderColor: color.dark }}>
                 <span className="absolute -top-[10px] left-[8%] right-[8%] z-20 h-[10px] bg-[repeating-linear-gradient(90deg,transparent_0_10px,rgb(0_0_0/0.35)_10px_12px)]" aria-hidden />
-                <div inert={!isOpen} className="relative aspect-[5/4] bg-[#0b0c0d] p-3 shadow-[inset_0_20px_40px_rgb(0_0_0/0.85)] sm:aspect-[16/10] md:p-4 xl:aspect-[2/1]">
+                <div inert={!isOpen} className="relative aspect-[5/4] bg-[#0b0c0d] p-3 shadow-[inset_0_20px_40px_rgb(0_0_0/0.85)] sm:aspect-[16/10] md:aspect-[5/4] md:p-4 lg:aspect-[16/10] xl:aspect-[2/1]">
                   <ul className="grid h-full grid-cols-2 gap-2 md:gap-3">
                     {tools.map((t, i) => (
                       <motion.li

@@ -12,6 +12,7 @@ import { BarrierTape, ChantierTitle } from "./shared";
 type Channel = { id: string; label: string; value: string; href: string; action: string; icon: ReactNode; external?: boolean; download?: boolean };
 
 const linkedin = identity.socials.find((s) => s.label === "LinkedIn");
+const [emailUser, emailDomain] = identity.email.split("@");
 
 const channels: Channel[] = [
   { id: "email", label: "Email", value: identity.email, href: `mailto:${identity.email}?subject=${encodeURIComponent("Proposition d'entretien")}`, action: "Écrire", icon: <Mail aria-hidden className="size-5" /> },
@@ -106,7 +107,7 @@ export function ChantierRadio() {
                 </button>
               </div>
 
-              <div aria-hidden className="mt-5 h-20 rounded-xl bg-[radial-gradient(#0d0f10_2.2px,transparent_2.6px)] [background-size:11px_11px]" />
+              <div aria-hidden className="mt-5 h-12 rounded-xl sm:h-20 bg-[radial-gradient(#0d0f10_2.2px,transparent_2.6px)] [background-size:11px_11px]" />
 
               <a
                 href={channel.href}
@@ -128,8 +129,9 @@ export function ChantierRadio() {
             <p className="max-w-xl text-xl leading-relaxed text-ink/85">
               Une agence qui cherche un architecte junior pour ses projets de logements ? Je suis disponible pour un entretien, un test ou un premier projet.
             </p>
-            <a href={`mailto:${identity.email}`} className="mt-6 block break-all font-display text-[clamp(2rem,4.6vw,4.25rem)] uppercase leading-[0.9] text-terra hover:text-ink" data-cursor="">
-              {identity.email}
+            <a href={`mailto:${identity.email}`} className="mt-6 block break-words font-display text-[clamp(1.75rem,7.5vw,4.25rem)] uppercase leading-[0.9] text-terra hover:text-ink lg:text-[clamp(2rem,4.6vw,4.25rem)]" data-cursor="">
+              {emailUser}@<wbr />
+              {emailDomain}
             </a>
 
             <p className="mt-12 mb-4 font-mono text-xs uppercase tracking-[0.2em] text-graphite">Fiche des canaux</p>
@@ -157,7 +159,7 @@ export function ChantierRadio() {
 
       <BarrierTape text="Fin de chantier · merci de votre visite" reverse className="mt-[14vh] rotate-1" />
 
-      <footer className="flex flex-wrap items-center justify-between gap-6 px-[var(--gutter)] pb-28 pt-8 text-sm lg:pb-8">
+      <footer className="flex flex-wrap items-center justify-between gap-6 px-[var(--gutter)] pb-10 pt-8 text-sm lg:pb-8">
         <span className="flex items-center gap-3">
           <Monogram className="size-8 text-terra" />
           {identity.name} — {identity.title}

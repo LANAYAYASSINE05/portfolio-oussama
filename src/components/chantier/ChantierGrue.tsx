@@ -200,7 +200,7 @@ export function ChantierGrue() {
 
         <div className="relative mx-auto w-full min-w-0 max-w-[620px] lg:-mt-10">
           <Crane />
-          <p data-ch-fade className="absolute bottom-[4%] left-0 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-graphite">
+          <p data-ch-fade className="mt-3 font-mono text-[0.65rem] uppercase tracking-[0.2em] text-graphite">
             Grue GT-01 · charge 2,6 t · portée 40 m
           </p>
         </div>

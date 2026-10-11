@@ -2,7 +2,7 @@
 
 import { AnimatePresence, motion } from "motion/react";
 import { ArrowLeft, ArrowRight, DoorOpen, Eye } from "lucide-react";
-import { useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
+import { useEffect, useRef, useState, type KeyboardEvent, type PointerEvent } from "react";
 import { ProjectImage } from "@/components/studio/StudioVisual";
 import { projects } from "@/lib/content";
 import { ChantierTitle } from "./shared";
@@ -33,13 +33,17 @@ export function ChantierPalissade() {
     fence.current?.style.setProperty("--r", "0px");
   };
 
+  useEffect(() => {
+    if (window.matchMedia("(hover: none)").matches) fence.current?.style.setProperty("--r", "clamp(56px, 16vw, 110px)");
+  }, []);
+
   return (
     <section id="projets" data-room="projets" className="asphalt px-[var(--gutter)] py-[14vh]">
       <ChantierTitle
         lot={2}
         tag="Projets"
         title="Derrière la palissade."
-        sub="Survolez pour regarder par le trou · ouvrez pour tout voir"
+        sub="Regardez par le trou · ouvrez pour tout voir"
         aside={
           <div className="flex gap-3">
             <button type="button" onClick={() => go(index - 1)} aria-label="Projet précédent" className="grid size-14 place-items-center border-2 border-ink/60 transition-colors hover:border-terra hover:text-terra" data-cursor="">
@@ -89,7 +93,7 @@ export function ChantierPalissade() {
                   >
                     <span className="absolute inset-y-0 left-1/3 w-px bg-[#6e4a26]/40" />
                     <span className="absolute inset-y-0 left-2/3 w-px bg-[#6e4a26]/40" />
-                    <span className="hazard absolute inset-x-0 bottom-0 h-8 opacity-90" />
+                    <span className="hazard absolute inset-x-0 bottom-0 h-4 opacity-90 sm:h-8" />
                     {side === 0 ? (
                       <div className="absolute left-[8%] top-[12%] w-[78%] rotate-[-2deg] bg-[#f4f2ec] p-4 text-[#141414] shadow-[0_10px_18px_rgb(0_0_0/0.4)] md:p-6">
                         <p className="font-mono text-[0.6rem] font-bold uppercase tracking-[0.2em] text-[#141414]/60">Projet {project.index}</p>
@@ -120,17 +124,24 @@ export function ChantierPalissade() {
 
             <div className="flex items-center justify-between gap-4 bg-[#3c4147] px-4 py-3">
               <span className="font-mono text-[0.65rem] uppercase tracking-[0.18em] text-ink/70">
-                Palissade P-{project.index} · {project.location}
+                Palissade P-{project.index}
+                <span className="hidden sm:inline"> · {project.location}</span>
               </span>
               <button
                 type="button"
                 onClick={() => setOpen((v) => !v)}
                 aria-pressed={open}
-                className="flex items-center gap-2 bg-terra px-4 py-2 font-display text-base uppercase text-[#111] transition-transform hover:-translate-y-0.5"
+                className="flex shrink-0 items-center gap-2 whitespace-nowrap bg-terra px-4 py-2 font-display text-base uppercase text-[#111] transition-transform hover:-translate-y-0.5"
                 data-cursor=""
               >
                 <DoorOpen aria-hidden className="size-4" />
-                {open ? "Refermer" : "Ouvrir la palissade"}
+                {open ? (
+                  "Refermer"
+                ) : (
+                  <>
+                    Ouvrir<span className="hidden sm:inline"> la palissade</span>
+                  </>
+                )}
               </button>
             </div>
           </div>

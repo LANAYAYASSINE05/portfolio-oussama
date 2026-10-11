@@ -42,7 +42,7 @@ export function ChantierMonteCharge({ active }: { active: string }) {
   const level = Math.max(0, floors.findIndex((f) => f.id === active));
 
   return (
-    <nav aria-label="Sections" className="group fixed right-2 top-1/2 z-40 hidden h-[62vh] -translate-y-1/2 lg:flex">
+    <nav aria-label="Sections" className="group fixed right-2 top-1/2 z-40 hidden h-[62vh] -translate-y-1/2 xl:flex">
       <ul className="pointer-events-none relative mr-2 w-28 group-focus-within:pointer-events-auto group-hover:pointer-events-auto">
         {floors.map((f, i) => {
           const on = f.id === active;

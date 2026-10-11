@@ -65,13 +65,13 @@ export function ChantierCoulage() {
     <section id="competences" data-room="competences" ref={root} className="asphalt px-[var(--gutter)] py-[14vh]">
       <ChantierTitle lot={4} tag="Compétences" title="Coulé dans le béton." sub="Chaque coffrage est rempli à mon niveau de maîtrise" />
 
-      <div className="-mx-[var(--gutter)] overflow-x-auto px-[var(--gutter)] pb-4">
-        <div data-ch-forms className="grid min-w-[44rem] grid-cols-7 gap-3 md:gap-5">
+      <div>
+        <div data-ch-forms className="grid grid-cols-3 gap-x-4 gap-y-10 sm:grid-cols-4 lg:grid-cols-7 lg:gap-5">
           {skills.map((s) => (
             <div key={s.name} className="flex flex-col">
               <div data-ch-pour data-level={s.level} className="relative">
                 <span data-ch-stream aria-hidden className="absolute -top-10 left-1/2 z-10 block h-[calc(100%+2.5rem)] w-2 origin-top -translate-x-1/2 rounded-b-full opacity-0" style={concrete} />
-                <div className="plywood relative h-[22rem] border-x-[8px] border-b-[8px] border-[#9a6d3c] md:h-[26rem]">
+                <div className="plywood relative h-52 border-x-[6px] border-b-[6px] border-[#9a6d3c] sm:h-72 md:border-x-[8px] md:border-b-[8px] lg:h-[24rem] xl:h-[26rem]">
                   <div className="absolute inset-0 overflow-hidden bg-[#121416] shadow-[inset_0_10px_20px_rgb(0_0_0/0.8)]">
                     <span data-ch-fill aria-hidden className="absolute inset-0 block origin-bottom" style={{ ...concrete, transform: "scaleY(0)" }}>
                       <span className="absolute inset-x-0 top-0 h-1.5 bg-[#c7c9c8]" />
@@ -88,12 +88,14 @@ export function ChantierCoulage() {
                 </div>
               </div>
               <p className="mt-4 flex items-baseline gap-1">
-                <span data-ch-value className="led font-mono text-3xl font-bold md:text-4xl">
+                <span data-ch-value className="led font-mono text-2xl font-bold sm:text-3xl md:text-4xl">
                   {s.level}
                 </span>
                 <span className="font-mono text-xs text-graphite">%</span>
               </p>
-              <p className="mt-1 font-display text-lg uppercase leading-[1.05] md:text-xl">{s.name}</p>
+              <p className="mt-1 hyphens-auto font-display text-base uppercase leading-[1.05] sm:text-lg xl:text-xl" lang="fr">
+                {s.name}
+              </p>
             </div>
           ))}
         </div>

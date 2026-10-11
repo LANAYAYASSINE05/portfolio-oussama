@@ -66,7 +66,7 @@ export function ChantierPermis() {
       <ChantierTitle lot={1} tag="Profil" title={<>Autorisation de construire, accordée.</>} sub="Affichage obligatoire sur le terrain" />
 
       <div className="grid gap-12 lg:grid-cols-[1.25fr_1fr] lg:gap-16">
-        <div className="relative pb-24">
+        <div className="relative pb-14 md:pb-24">
           <span aria-hidden className="steel absolute bottom-0 left-[12%] top-6 w-4 rounded-sm" />
           <span aria-hidden className="steel absolute bottom-0 right-[12%] top-6 w-4 rounded-sm" />
           <span aria-hidden className="steel absolute bottom-10 left-[10%] right-[10%] h-3 rounded-sm" />
