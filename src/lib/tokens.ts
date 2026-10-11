@@ -1,0 +1,168 @@
+export const themes = {
+  trait: {
+    name: "Le Trait",
+    tagline: "Papier calque, encre et terre cuite — le dessin d'architecte.",
+    fonts: "Instrument Serif · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Paper", token: "--paper", hex: "#ECE8E1", role: "Fond — chaux" },
+      { name: "Paper 2", token: "--paper-2", hex: "#E2DDD4", role: "Surface secondaire" },
+      { name: "Ink", token: "--ink", hex: "#141413", role: "Texte & trait" },
+      { name: "Graphite", token: "--graphite", hex: "#6B6A65", role: "Annotations" },
+      { name: "Accent", token: "--accent", hex: "#B4532A", role: "Terre cuite" },
+      { name: "Night", token: "--night", hex: "#0F0F0E", role: "Sections sombres" },
+    ],
+  },
+  volume: {
+    name: "Volume",
+    tagline: "Maquette 3D, verre dépoli et lumière glacier — l'architecture en volume.",
+    fonts: "Sora · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Void", token: "--paper", hex: "#07090D", role: "Fond — nuit profonde" },
+      { name: "Void 2", token: "--paper-2", hex: "#0C1016", role: "Surface secondaire" },
+      { name: "Light", token: "--ink", hex: "#E8EDF3", role: "Texte & arêtes" },
+      { name: "Steel", token: "--graphite", hex: "#8A94A3", role: "Annotations" },
+      { name: "Glacier", token: "--accent", hex: "#7EE0FF", role: "Lumière & verre" },
+      { name: "Night", token: "--night", hex: "#0F131A", role: "Sections sombres" },
+    ],
+  },
+  medina: {
+    name: "Médina",
+    tagline: "Chaux, cèdre, zellige et ocre — le patrimoine marocain réinterprété.",
+    fonts: "Reem Kufi · Aref Ruqaa (arabe) · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Chaux", token: "--paper", hex: "#F2E8D9", role: "Fond — enduit à la chaux" },
+      { name: "Tadelakt", token: "--paper-2", hex: "#E9DAC3", role: "Surface secondaire" },
+      { name: "Cèdre", token: "--ink", hex: "#2B1D14", role: "Texte & trait" },
+      { name: "Pisé", token: "--graphite", hex: "#7A6656", role: "Annotations" },
+      { name: "Zellige", token: "--accent", hex: "#136F63", role: "Accent — émail vert" },
+      { name: "Ocre", token: "--ocre", hex: "#C8863B", role: "Accent secondaire" },
+      { name: "Nuit", token: "--night", hex: "#14302B", role: "Sections sombres" },
+    ],
+  },
+  bento: {
+    name: "Bento",
+    tagline: "Grille de cartes modulaires — chaque section devient un tableau de bord interactif.",
+    fonts: "Bricolage Grotesque · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Fond", token: "--paper", hex: "#ECEBE6", role: "Fond de grille" },
+      { name: "Carte", token: "--paper-2", hex: "#FFFFFF", role: "Tuiles claires" },
+      { name: "Encre", token: "--ink", hex: "#111111", role: "Texte" },
+      { name: "Gris", token: "--graphite", hex: "#6F6E69", role: "Annotations" },
+      { name: "Signal", token: "--accent", hex: "#FF4F1A", role: "Accent — orange signal" },
+      { name: "Nuit", token: "--night", hex: "#141414", role: "Tuiles sombres" },
+    ],
+  },
+  lumiere: {
+    name: "Lumière",
+    tagline: "Cinématique — chaque section est une scène : étude d'ombre, pellicule, séquences, générique.",
+    fonts: "Bodoni Moda · Inter Tight (génériques) · JetBrains Mono",
+    colors: [
+      { name: "Salle", token: "--paper", hex: "#0B0A09", role: "Fond — salle obscure" },
+      { name: "Écran", token: "--paper-2", hex: "#15130F", role: "Plans" },
+      { name: "Ivoire", token: "--ink", hex: "#F3E6CF", role: "Texte — lumière de projection" },
+      { name: "Argentique", token: "--graphite", hex: "#8C8478", role: "Annotations" },
+      { name: "Soleil", token: "--accent", hex: "#F2A93B", role: "Accent — lumière dorée" },
+      { name: "Noir", token: "--night", hex: "#050504", role: "Pellicule & générique" },
+    ],
+  },
+  studio: {
+    name: "Studio",
+    tagline: "Agence d'architecture — grandes images, silence, précision. L'image professionnelle pour les recruteurs.",
+    fonts: "Jost · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Chaux", token: "--paper", hex: "#F3F0EA", role: "Fond — enduit clair" },
+      { name: "Pierre", token: "--paper-2", hex: "#E8E3DA", role: "Surface secondaire" },
+      { name: "Encre", token: "--ink", hex: "#1B1A17", role: "Texte" },
+      { name: "Béton", token: "--graphite", hex: "#7F7A72", role: "Annotations" },
+      { name: "Bronze", token: "--accent", hex: "#8C6A43", role: "Accent — menuiserie bronze" },
+      { name: "Ardoise", token: "--night", hex: "#161513", role: "Sections sombres" },
+    ],
+  },
+  beton: {
+    name: "Béton",
+    tagline: "Brutaliste — grille apparente, typographie massive, béton brut et orange chantier.",
+    fonts: "Archivo (étendue) · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Béton", token: "--paper", hex: "#D9D8D3", role: "Fond — béton brut" },
+      { name: "Banché", token: "--paper-2", hex: "#CBCAC4", role: "Surface secondaire" },
+      { name: "Noir", token: "--ink", hex: "#0D0D0C", role: "Texte & grille" },
+      { name: "Ciment", token: "--graphite", hex: "#55544F", role: "Annotations" },
+      { name: "Chantier", token: "--accent", hex: "#FF5A1F", role: "Accent — orange chantier" },
+      { name: "Bitume", token: "--night", hex: "#0D0D0C", role: "Sections sombres" },
+    ],
+  },
+  claustra: {
+    name: "Claustra",
+    tagline: "Nuit de la médina — lanternes en laiton, arcs brisés, zellige turquoise, en mode sombre.",
+    fonts: "El Messiri (latin & arabe) · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Encre de nuit", token: "--paper", hex: "#0D0C12", role: "Fond — ciel de la médina" },
+      { name: "Ombre", token: "--paper-2", hex: "#17151E", role: "Surfaces" },
+      { name: "Ivoire", token: "--ink", hex: "#F1E6D2", role: "Texte" },
+      { name: "Sable fané", token: "--graphite", hex: "#A2998A", role: "Annotations" },
+      { name: "Laiton", token: "--accent", hex: "#E0A94E", role: "Accent — lumière des lanternes" },
+      { name: "Turquoise", token: "--safran", hex: "#3DBFAE", role: "Accent secondaire — zellige" },
+      { name: "Nuit profonde", token: "--night", hex: "#060509", role: "Sections les plus sombres" },
+    ],
+  },
+  bloc: {
+    name: "Bloc",
+    tagline: "Néo-brutaliste coloré en mode sombre — contours épais, ombres franches, stickers à déplacer.",
+    fonts: "Unbounded · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Charbon", token: "--paper", hex: "#141414", role: "Fond" },
+      { name: "Craie", token: "--ink", hex: "#F7F3EA", role: "Texte, contours et ombres" },
+      { name: "Citron vert", token: "--accent", hex: "#C8FF3D", role: "Accent principal" },
+      { name: "Rose", token: "--color-pop-pink", hex: "#FF6FAE", role: "Bloc pop" },
+      { name: "Bleu", token: "--color-pop-blue", hex: "#5B8CFF", role: "Bloc pop" },
+      { name: "Soleil", token: "--color-pop-sun", hex: "#FFD23F", role: "Bloc pop" },
+      { name: "Orange", token: "--color-pop-orange", hex: "#FF7D3B", role: "Bloc pop" },
+    ],
+  },
+  maquette: {
+    name: "Maquette",
+    tagline: "L'atelier maquette la nuit — tapis de coupe, carton kraft, balsa, mousse et papier calque.",
+    fonts: "Barlow Condensed · Caveat (annotations) · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Tapis de coupe", token: "--paper", hex: "#131915", role: "Fond quadrillé" },
+      { name: "Tapis clair", token: "--paper-2", hex: "#1B231E", role: "Surfaces" },
+      { name: "Mousse", token: "--ink", hex: "#ECE5D6", role: "Texte, carton mousse" },
+      { name: "Cutter", token: "--accent", hex: "#FF6A2B", role: "Accent — lames, épingles, découpes" },
+      { name: "Balsa", token: "--safran", hex: "#E0BF8A", role: "Accent secondaire — bois" },
+      { name: "Kraft", token: ".kraft", hex: "#B98A5A", role: "Carton, étiquettes, colis" },
+      { name: "Nuit", token: "--night", hex: "#0C100D", role: "Sections les plus sombres" },
+    ],
+  },
+  chantier: {
+    name: "Chantier",
+    tagline: "Le chantier la nuit — asphalte, projecteurs, balisage jaune et noir, palissade et conteneurs.",
+    fonts: "Big Shoulders · Big Shoulders Stencil (marquages) · Inter Tight · JetBrains Mono",
+    colors: [
+      { name: "Asphalte", token: "--paper", hex: "#0F1113", role: "Fond — sol de chantier la nuit" },
+      { name: "Bitume", token: "--paper-2", hex: "#171A1D", role: "Surfaces" },
+      { name: "Craie", token: "--ink", hex: "#EEEBE3", role: "Texte, marquages au sol" },
+      { name: "Signalisation", token: "--accent", hex: "#FFC400", role: "Accent — balisage, grue, projecteurs" },
+      { name: "Sécurité", token: "--safran", hex: "#FF5B14", role: "Accent secondaire — gyrophares, LED" },
+      { name: "Contreplaqué", token: ".plywood", hex: "#C79A62", role: "Palissade, caisses" },
+      { name: "Nuit", token: "--night", hex: "#090A0B", role: "Sections les plus sombres" },
+    ],
+  },
+} as const;
+
+export const motionTokens = {
+  ease: {
+    archi: [0.16, 1, 0.3, 1] as const,
+    draft: [0.65, 0, 0.35, 1] as const,
+  },
+  duration: {
+    fast: 0.4,
+    base: 0.8,
+    slow: 1.2,
+    draw: 1.8,
+  },
+} as const;
+
+export const spring = {
+  cursor: { stiffness: 500, damping: 40, mass: 0.4 },
+  magnetic: { stiffness: 180, damping: 14, mass: 0.2 },
+} as const;

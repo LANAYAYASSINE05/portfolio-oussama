@@ -1,0 +1,874 @@
+@import "tailwindcss";
+
+/* ───────────── Design system « Le Trait » ───────────── */
+
+@theme {
+  --ease-archi: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-draft: cubic-bezier(0.65, 0, 0.35, 1);
+
+  --text-micro: 0.6875rem;
+  --text-micro--letter-spacing: 0.08em;
+
+  --color-pop-lime: #c8ff3d;
+  --color-pop-pink: #ff6fae;
+  --color-pop-blue: #5b8cff;
+  --color-pop-sun: #ffd23f;
+  --color-pop-orange: #ff7d3b;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-graphite: var(--graphite);
+  --color-line: var(--line);
+  --color-terra: var(--accent);
+  --color-night: var(--night);
+  --color-on-night: var(--on-night);
+  --color-safran: var(--safran, #e9a23b);
+
+  --font-display: var(--display-font);
+  --font-sans: var(--font-inter-tight), system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, monospace;
+}
+
+:root {
+  --gutter: clamp(1rem, 2.5vw, 2rem);
+  --header-h: 4.5rem;
+
+  /* Thème « Le Trait » — papier calque */
+  --paper: #ece8e1;
+  --paper-2: #e2ddd4;
+  --ink: #141413;
+  --graphite: #6b6a65;
+  --line: rgb(20 20 19 / 0.14);
+  --line-fine: rgb(20 20 19 / 0.05);
+  --accent: #b4532a;
+  --night: #0f0f0e;
+  --on-night: #ece8e1;
+  --display-font: var(--font-instrument), "Times New Roman", serif;
+  --display-tracking: -0.03em;
+  color-scheme: light;
+}
+
+/* Thème « Volume » — immersif 3D, verre dépoli */
+[data-theme="volume"] {
+  --paper: #07090d;
+  --paper-2: #0c1016;
+  --ink: #e8edf3;
+  --graphite: #8a94a3;
+  --line: rgb(232 237 243 / 0.1);
+  --line-fine: rgb(232 237 243 / 0.04);
+  --accent: #7ee0ff;
+  --night: #0f131a;
+  --on-night: #e8edf3;
+  --display-font: var(--font-grotesk), system-ui, sans-serif;
+  --display-tracking: -0.05em;
+  color-scheme: dark;
+}
+
+[data-theme="volume"] .font-display {
+  letter-spacing: var(--display-tracking);
+  font-weight: 500;
+}
+
+[data-theme="volume"] .font-display.italic,
+[data-theme="volume"] .font-display .italic {
+  font-style: normal;
+  font-weight: 300;
+}
+
+[data-theme="volume"] body {
+  background:
+    radial-gradient(60vw 60vw at 85% -10%, rgb(126 224 255 / 0.08), transparent 60%),
+    radial-gradient(50vw 50vw at -10% 40%, rgb(140 120 255 / 0.06), transparent 60%),
+    var(--paper);
+  background-attachment: fixed;
+}
+
+/* Surfaces en verre dépoli */
+[data-theme="volume"] :is([data-tile], [data-edu-card] > div > div, [data-project-visual]) {
+  background-color: rgb(255 255 255 / 0.035);
+  backdrop-filter: blur(14px) saturate(140%);
+  border-color: rgb(255 255 255 / 0.12);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.08), 0 30px 60px -30px rgb(0 0 0 / 0.6);
+}
+
+[data-theme="volume"] .bg-night {
+  background: linear-gradient(180deg, var(--night), var(--paper));
+}
+
+[data-theme="volume"] .grain::after {
+  opacity: 0.05;
+  mix-blend-mode: screen;
+}
+
+/* Thème « Médina » — patrimoine marocain contemporain */
+[data-theme="medina"] {
+  --paper: #f2e8d9;
+  --paper-2: #e9dac3;
+  --ink: #2b1d14;
+  --graphite: #7a6656;
+  --line: rgb(43 29 20 / 0.16);
+  --line-fine: rgb(43 29 20 / 0.06);
+  --accent: #136f63;
+  --ocre: #c8863b;
+  --night: #14302b;
+  --on-night: #f2e8d9;
+  --display-font: var(--font-kufi), system-ui, sans-serif;
+  --zellige: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' fill='none' stroke='%232b1d14' stroke-opacity='.1'%3E%3Cpath d='M20 20h40v40H20zM40 12l28 28-28 28-28-28zM40 0v12m0 56v12M0 40h12m56 0h12M0 8l8-8m64 0 8 8m0 64-8 8M8 80l-8-8'/%3E%3C/svg%3E");
+  --zellige-night: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' fill='none' stroke='%23f2e8d9' stroke-opacity='.07'%3E%3Cpath d='M20 20h40v40H20zM40 12l28 28-28 28-28-28zM40 0v12m0 56v12M0 40h12m56 0h12M0 8l8-8m64 0 8 8m0 64-8 8M8 80l-8-8'/%3E%3C/svg%3E");
+  color-scheme: light;
+}
+
+[data-theme="medina"] .font-display {
+  letter-spacing: -0.02em;
+  font-weight: 500;
+}
+
+[data-theme="medina"] .font-display.italic,
+[data-theme="medina"] .font-display .italic {
+  font-style: normal;
+  font-weight: 700;
+}
+
+[data-theme="medina"] .blueprint {
+  background-image: var(--zellige);
+  background-size: 5rem 5rem;
+}
+
+[data-theme="medina"] .bg-night {
+  background-image: var(--zellige-night);
+  background-size: 5rem 5rem;
+}
+
+[data-theme="medina"] body {
+  background:
+    radial-gradient(70vw 50vw at 100% 0%, rgb(200 134 59 / 0.12), transparent 60%),
+    radial-gradient(50vw 50vw at 0% 60%, rgb(19 111 99 / 0.07), transparent 60%),
+    var(--paper);
+  background-attachment: fixed;
+}
+
+/* Arcs outrepassés */
+[data-theme="medina"] [data-edu-card] > div > div {
+  border-radius: 50% 50% 0.25rem 0.25rem / 7.5rem 7.5rem 0.25rem 0.25rem;
+  padding-top: 5rem;
+}
+
+[data-theme="medina"] [data-project-visual] {
+  border-radius: 50% 50% 0 0 / 30% 30% 0 0;
+}
+
+[data-theme="medina"] [data-tile] {
+  border-radius: 50% 50% 0.25rem 0.25rem / 32% 32% 0.25rem 0.25rem;
+  padding-top: 28%;
+}
+
+[data-theme="medina"] .grain::after {
+  opacity: 0.09;
+}
+
+/* Thème « Bento » — grille de cartes modulaires */
+[data-theme="bento"] {
+  --paper: #ecebe6;
+  --paper-2: #ffffff;
+  --ink: #111111;
+  --graphite: #6f6e69;
+  --line: rgb(17 17 17 / 0.1);
+  --line-fine: rgb(17 17 17 / 0.05);
+  --accent: #ff4f1a;
+  --night: #141414;
+  --on-night: #f5f4ef;
+  --display-font: var(--font-bricolage), system-ui, sans-serif;
+  --radius-tile: 1.75rem;
+  color-scheme: light;
+}
+
+[data-theme="bento"] .font-display {
+  letter-spacing: -0.045em;
+  font-weight: 600;
+}
+
+[data-theme="bento"] .font-display.italic,
+[data-theme="bento"] .font-display .italic {
+  font-style: normal;
+  font-weight: 300;
+}
+
+[data-theme="bento"] .blueprint {
+  background-image: radial-gradient(var(--line) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+}
+
+[data-theme="bento"] .grain::after {
+  opacity: 0.035;
+}
+
+/* Thème « Lumière » — cinématique, ombre et lumière */
+[data-theme="lumiere"] {
+  --paper: #0b0a09;
+  --paper-2: #15130f;
+  --ink: #f3e6cf;
+  --graphite: #8c8478;
+  --line: rgb(243 230 207 / 0.12);
+  --line-fine: rgb(243 230 207 / 0.05);
+  --accent: #f2a93b;
+  --night: #050504;
+  --on-night: #f3e6cf;
+  --display-font: var(--font-bodoni), "Times New Roman", serif;
+  color-scheme: dark;
+}
+
+[data-theme="lumiere"] .font-display {
+  letter-spacing: -0.02em;
+  font-weight: 400;
+}
+
+[data-theme="lumiere"] .blueprint {
+  background-image: repeating-linear-gradient(0deg, var(--line-fine) 0 1px, transparent 1px 4px);
+  background-size: auto;
+}
+
+[data-theme="lumiere"] .grain::after {
+  opacity: 0.12;
+  mix-blend-mode: screen;
+}
+
+/* Thème « Studio » — agence d'architecture : chaux, béton et bronze */
+[data-theme="studio"] {
+  --paper: #f3f0ea;
+  --paper-2: #e8e3da;
+  --ink: #1b1a17;
+  --graphite: #7f7a72;
+  --line: rgb(27 26 23 / 0.12);
+  --line-fine: rgb(27 26 23 / 0.05);
+  --accent: #8c6a43;
+  --night: #161513;
+  --on-night: #f3f0ea;
+  --display-font: var(--font-jost), "Futura", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+[data-theme="studio"] .font-display {
+  font-weight: 300;
+  letter-spacing: -0.02em;
+}
+
+[data-theme="studio"] .blueprint {
+  background-image: none;
+}
+
+[data-theme="studio"] .grain::after {
+  opacity: 0.035;
+}
+
+.studio-caps {
+  text-transform: uppercase;
+  letter-spacing: 0.24em;
+  font-size: 0.6875rem;
+  font-weight: 500;
+}
+
+/* Thème « Béton » — brutaliste : grille apparente, béton brut et orange chantier */
+[data-theme="beton"] {
+  --paper: #d9d8d3;
+  --paper-2: #cbcac4;
+  --ink: #0d0d0c;
+  --graphite: #55544f;
+  --line: #0d0d0c;
+  --line-fine: rgb(13 13 12 / 0.08);
+  --accent: #ff5a1f;
+  --night: #0d0d0c;
+  --on-night: #d9d8d3;
+  --display-font: var(--font-archivo), "Arial Black", system-ui, sans-serif;
+  color-scheme: light;
+}
+
+[data-theme="beton"] .font-display {
+  font-weight: 900;
+  font-stretch: 125%;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+[data-theme="beton"] .blueprint {
+  background-image: none;
+}
+
+[data-theme="beton"] .grain::after {
+  opacity: 0.09;
+}
+
+.beton-mono {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: 0.75rem;
+}
+
+@keyframes beton-tape {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.beton-tape {
+  animation: beton-tape 28s linear infinite;
+}
+
+.beton-hazard {
+  background-image: repeating-linear-gradient(-45deg, var(--accent) 0 14px, var(--ink) 14px 28px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .beton-tape {
+    animation: none;
+  }
+}
+
+/* Thème « Claustra » (sombre) — nuit de la médina : encre de nuit, ivoire, laiton des lanternes, turquoise zellige */
+[data-theme="claustra"] {
+  --paper: #0d0c12;
+  --paper-2: #17151e;
+  --ink: #f1e6d2;
+  --graphite: #a2998a;
+  --line: rgb(241 230 210 / 0.12);
+  --line-fine: rgb(241 230 210 / 0.05);
+  --accent: #e0a94e;
+  --safran: #3dbfae;
+  --night: #060509;
+  --on-night: #f1e6d2;
+  --display-font: var(--font-messiri), Georgia, serif;
+  color-scheme: dark;
+}
+
+@keyframes lantern-flicker {
+  0%, 100% { opacity: 0.9; }
+  12% { opacity: 0.72; }
+  20% { opacity: 1; }
+  47% { opacity: 0.82; }
+  60% { opacity: 0.96; }
+  78% { opacity: 0.76; }
+}
+
+.lantern-flicker {
+  animation: lantern-flicker 3.6s ease-in-out infinite;
+}
+
+@keyframes claustra-marquee {
+  to { transform: translateX(-50%); }
+}
+
+.claustra-marquee {
+  animation: claustra-marquee 38s linear infinite;
+}
+
+.brass-text {
+  background: linear-gradient(100deg, #8a5a1c 0%, #e0a94e 30%, #ffe2a6 50%, #e0a94e 70%, #8a5a1c 100%);
+  background-size: 220% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: background-position 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.brass-text:hover {
+  background-position: 100% 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lantern-flicker,
+  .claustra-marquee {
+    animation: none;
+  }
+}
+
+[data-theme="claustra"] .font-display {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+
+[data-theme="claustra"] .blueprint {
+  background-image: none;
+}
+
+[data-theme="claustra"] .grain::after {
+  opacity: 0.06;
+}
+
+.claustra-eyebrow {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.arch {
+  border-radius: 999px 999px 0 0;
+}
+
+/* Thème « Bloc » (sombre) — néo-brutaliste coloré : contours épais, ombres franches et couleurs pop */
+[data-theme="bloc"] {
+  --paper: #141414;
+  --paper-2: #1f1f1f;
+  --ink: #f7f3ea;
+  --graphite: #a8a49b;
+  --line: rgb(247 243 234 / 0.9);
+  --line-fine: rgb(247 243 234 / 0.08);
+  --accent: #c8ff3d;
+  --night: #0a0a0a;
+  --on-night: #f7f3ea;
+  --display-font: var(--font-unbounded), system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+[data-theme="bloc"] .font-display {
+  font-weight: 800;
+  letter-spacing: -0.03em;
+}
+
+[data-theme="bloc"] .blueprint {
+  background-image: none;
+}
+
+.bloc-box {
+  border: 3px solid var(--ink);
+  border-radius: 1.25rem;
+  box-shadow: 6px 6px 0 0 var(--ink);
+}
+
+.bloc-press {
+  transition:
+    transform 0.18s cubic-bezier(0.3, 0.7, 0.4, 1.5),
+    box-shadow 0.18s cubic-bezier(0.3, 0.7, 0.4, 1.5);
+}
+
+.bloc-press:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 0 var(--ink);
+}
+
+.bloc-press:active {
+  transform: translate(5px, 5px);
+  box-shadow: 1px 1px 0 0 var(--ink);
+}
+
+.bloc-dots {
+  background-image: radial-gradient(rgb(247 243 234 / 0.12) 1.5px, transparent 1.5px);
+  background-size: 22px 22px;
+}
+
+.bloc-stripes {
+  background-image: repeating-linear-gradient(-45deg, rgb(0 0 0 / 0.22) 0 8px, transparent 8px 16px);
+}
+
+@keyframes bloc-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.bloc-marquee {
+  animation: bloc-marquee 26s linear infinite;
+}
+
+@keyframes bloc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.bloc-spin {
+  animation: bloc-spin 18s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bloc-marquee,
+  .bloc-spin {
+    animation: none;
+  }
+}
+
+/* Thème « Maquette » (sombre) — l'atelier la nuit : tapis de coupe, carton kraft, balsa, mousse et calque */
+[data-theme="maquette"] {
+  --paper: #131915;
+  --paper-2: #1b231e;
+  --ink: #ece5d6;
+  --graphite: #98a196;
+  --line: rgb(236 229 214 / 0.16);
+  --line-fine: rgb(236 229 214 / 0.06);
+  --accent: #ff6a2b;
+  --safran: #e0bf8a;
+  --night: #0c100d;
+  --on-night: #ece5d6;
+  --display-font: var(--font-barlow-condensed), system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+[data-theme="maquette"] .font-display {
+  font-weight: 700;
+  letter-spacing: -0.005em;
+}
+
+[data-theme="maquette"] .blueprint {
+  background-image: none;
+}
+
+@layer components {
+.font-hand {
+  font-family: var(--font-caveat), cursive;
+}
+
+.mat {
+  background-color: var(--paper);
+  background-image:
+    linear-gradient(rgb(126 178 146 / 0.17) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(126 178 146 / 0.17) 1px, transparent 1px),
+    linear-gradient(rgb(126 178 146 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(126 178 146 / 0.06) 1px, transparent 1px);
+  background-size:
+    100px 100px,
+    100px 100px,
+    20px 20px,
+    20px 20px;
+}
+
+.kraft {
+  background-color: #b98a5a;
+  background-image:
+    repeating-linear-gradient(97deg, rgb(60 35 10 / 0.07) 0 1px, transparent 1px 6px),
+    repeating-linear-gradient(-8deg, rgb(255 240 210 / 0.06) 0 2px, transparent 2px 11px);
+  color: #24170b;
+}
+
+.balsa {
+  background-color: #e2c391;
+  background-image:
+    repeating-linear-gradient(90deg, rgb(120 80 30 / 0.1) 0 1px, transparent 1px 9px),
+    repeating-linear-gradient(90deg, rgb(120 80 30 / 0.07) 0 2px, transparent 2px 31px);
+  color: #2a1c0c;
+}
+
+.foam {
+  background-color: #efe9dc;
+  color: #1b1a17;
+  box-shadow:
+    0 1px 0 #d8d0bf,
+    0 2px 0 #cfc6b3,
+    0 3px 0 #c6bca8,
+    0 4px 0 #b9ae98,
+    0 6px 0 #a89c85,
+    0 14px 24px rgb(0 0 0 / 0.5);
+}
+
+.calque {
+  background-color: rgb(236 229 214 / 0.07);
+  border: 1px solid rgb(236 229 214 / 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.tape {
+  background-color: rgb(231 214 162 / 0.88);
+  color: #2b2414;
+  clip-path: polygon(0 8%, 3% 0, 6% 10%, 9% 0, 100% 0, 97% 12%, 100% 25%, 97% 40%, 100% 55%, 97% 70%, 100% 85%, 97% 100%, 0 100%, 3% 88%, 0 75%, 3% 60%, 0 45%, 3% 30%, 0 15%);
+}
+
+.foam-text {
+  color: #efe9dc;
+  text-shadow:
+    1px 1px 0 #d6cdbb,
+    2px 2px 0 #c4b9a4,
+    3px 3px 0 #b2a68f,
+    4px 4px 0 #a0937b,
+    5px 5px 0 #8e8168,
+    10px 12px 22px rgb(0 0 0 / 0.6);
+}
+
+.perfo {
+  outline: 2px dashed rgb(236 229 214 / 0.45);
+  outline-offset: 4px;
+}
+
+.pin {
+  background: radial-gradient(circle at 35% 30%, #ffb08a, #ff6a2b 45%, #a8360c);
+  box-shadow: 2px 3px 4px rgb(0 0 0 / 0.55);
+}
+}
+
+/* Thème « Chantier » (sombre) — le chantier la nuit : asphalte, projecteurs, balisage jaune/noir, contreplaqué et conteneurs */
+[data-theme="chantier"] {
+  --paper: #0f1113;
+  --paper-2: #171a1d;
+  --ink: #eeebe3;
+  --graphite: #8c9198;
+  --line: rgb(238 235 227 / 0.14);
+  --line-fine: rgb(238 235 227 / 0.05);
+  --accent: #ffc400;
+  --safran: #ff5b14;
+  --night: #090a0b;
+  --on-night: #eeebe3;
+  --display-font: var(--font-big-shoulders), "Arial Narrow", system-ui, sans-serif;
+  color-scheme: dark;
+}
+
+[data-theme="chantier"] .font-display {
+  font-weight: 800;
+  letter-spacing: 0.005em;
+}
+
+[data-theme="chantier"] .blueprint {
+  background-image: none;
+}
+
+@layer components {
+  .font-stencil {
+    font-family: var(--font-big-shoulders-stencil), var(--font-big-shoulders), sans-serif;
+    font-weight: 800;
+  }
+
+  .hazard {
+    background-image: repeating-linear-gradient(-45deg, #ffc400 0 18px, #111 18px 36px);
+  }
+
+  .hazard-fine {
+    background-image: repeating-linear-gradient(-45deg, #ffc400 0 8px, #111 8px 16px);
+  }
+
+  .hazard-red {
+    background-image: repeating-linear-gradient(-45deg, #e8e4da 0 14px, #d6261c 14px 28px);
+  }
+
+  .asphalt {
+    background-color: var(--paper);
+    background-image:
+      radial-gradient(rgb(255 255 255 / 0.035) 1px, transparent 1.2px),
+      radial-gradient(rgb(0 0 0 / 0.35) 1px, transparent 1.2px);
+    background-size:
+      7px 7px,
+      11px 11px;
+    background-position:
+      0 0,
+      3px 5px;
+  }
+
+  .plywood {
+    background-color: #c79a62;
+    background-image:
+      radial-gradient(ellipse 40px 9px at 30% 20%, rgb(110 66 24 / 0.22), transparent 70%),
+      radial-gradient(ellipse 60px 12px at 70% 65%, rgb(110 66 24 / 0.18), transparent 70%),
+      repeating-linear-gradient(2deg, rgb(110 66 24 / 0.12) 0 2px, transparent 2px 13px),
+      repeating-linear-gradient(-1deg, rgb(255 230 190 / 0.1) 0 1px, transparent 1px 7px);
+    color: #2a1a0a;
+  }
+
+  .corrugated {
+    background-image: repeating-linear-gradient(90deg, rgb(255 255 255 / 0.12) 0 3px, rgb(0 0 0 / 0.22) 3px 10px, transparent 10px 14px);
+  }
+
+  .hivis {
+    background-image: linear-gradient(180deg, transparent 0 35%, #dfe3e6 35% 65%, transparent 65%);
+  }
+
+  .steel {
+    background: linear-gradient(180deg, #5b6168, #2f3338 55%, #3c4147);
+    color: var(--ink);
+  }
+
+  .led {
+    font-family: var(--font-jetbrains), ui-monospace, monospace;
+    font-variant-numeric: tabular-nums;
+    color: #ff7a2a;
+    text-shadow:
+      0 0 6px rgb(255 110 30 / 0.85),
+      0 0 18px rgb(255 90 20 / 0.45);
+  }
+
+  .stamp {
+    border: 4px double currentColor;
+    font-family: var(--font-big-shoulders-stencil), sans-serif;
+    font-weight: 800;
+    text-transform: uppercase;
+    mix-blend-mode: normal;
+  }
+}
+
+@keyframes chantier-beacon {
+  0%,
+  45% {
+    opacity: 1;
+    box-shadow:
+      0 0 14px 4px rgb(255 160 0 / 0.75),
+      0 0 60px 16px rgb(255 140 0 / 0.3);
+  }
+  50%,
+  100% {
+    opacity: 0.35;
+    box-shadow: none;
+  }
+}
+
+.chantier-beacon {
+  animation: chantier-beacon 1.1s steps(1, end) infinite;
+}
+
+@keyframes chantier-tape {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.chantier-tape {
+  animation: chantier-tape 30s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chantier-beacon,
+  .chantier-tape {
+    animation: none;
+  }
+}
+
+@keyframes credits-roll {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+.credits {
+  font-family: var(--font-sans);
+  text-transform: uppercase;
+  letter-spacing: 0.32em;
+  font-size: 0.75rem;
+}
+
+.font-arabic {
+  font-family: var(--font-ruqaa), serif;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+html {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-ink) transparent;
+}
+
+html.is-loading,
+html.is-loading body {
+  overflow: hidden;
+}
+
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+html,
+body {
+  overflow-x: clip;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-terra);
+  color: var(--color-paper);
+}
+
+@media (pointer: fine) {
+  html.has-cursor,
+  html.has-cursor * {
+    cursor: none !important;
+  }
+}
+
+/* Texture papier calque */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 90;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 8s steps(10) infinite;
+}
+
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  20% { transform: translate(-5%, 4%); }
+  40% { transform: translate(4%, -6%); }
+  60% { transform: translate(-3%, 7%); }
+  80% { transform: translate(6%, -2%); }
+}
+
+/* Trame de plan : quadrillage millimétré */
+.blueprint {
+  background-image:
+    linear-gradient(var(--color-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-line) 1px, transparent 1px);
+  background-size: 6rem 6rem;
+  background-position: center top;
+}
+
+.blueprint-fine {
+  background-image:
+    linear-gradient(var(--line-fine) 1px, transparent 1px),
+    linear-gradient(90deg, var(--line-fine) 1px, transparent 1px);
+  background-size: 1.5rem 1.5rem;
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: var(--text-micro);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+[data-hero-name] > * {
+  padding-bottom: 0.14em;
+  margin-bottom: -0.14em;
+}
+
+[data-bento-name] > * {
+  padding-bottom: 0.18em;
+  margin-bottom: -0.18em;
+}
+
+/* Masque de ligne pour SplitText */
+.line-mask {
+  overflow: clip;
+  padding-bottom: 0.08em;
+  margin-bottom: -0.08em;
+}
+
+.stroke-draw {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain::after {
+    animation: none;
+  }
+}
